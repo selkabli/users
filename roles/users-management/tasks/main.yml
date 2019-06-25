@@ -5,7 +5,6 @@
     name: "{{ USER }}"
     shell: /bin/bash
     state: present
-    password: "{{ PASSWORD }}"
     create_home: yes
 
 
@@ -23,7 +22,6 @@
     user: "{{ USER }}"
     state: present
     key: "{{ lookup('file', '../files/elykey.pub') }}"
-#    key: "{{ lookup('file', '/home/{{ USER }}/.ssh/id_rsa.pub') }}"
 
 
 - name: Add user "{{ USER }}" to sudo
