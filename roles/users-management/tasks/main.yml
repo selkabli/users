@@ -22,7 +22,7 @@
   authorized_key:
     user: "{{ USER }}"
     state: present
-    key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', '../files/elykey.pub') }}"
 #    key: "{{ lookup('file', '/home/{{ USER }}/.ssh/id_rsa.pub') }}"
 
 
