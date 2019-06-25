@@ -1,0 +1,26 @@
+---
+- name: Add the user 'emansour' with a bash shell
+  user:
+    name: emansour
+    shell: /bin/bash
+    state: present
+    groups: root
+    append: yes
+    create_home: yes
+
+    
+- name: Create a 2048-bit SSH key for user emansour in ~emansour/.ssh/id_rsa
+  user:
+    name: emansour
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: emansour
+    state: present
+    key: "{{ lookup('file', '/home/emansour/.ssh/id_rsa.pub') }}"
+
+
