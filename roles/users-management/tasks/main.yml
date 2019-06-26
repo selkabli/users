@@ -1,34 +1,8 @@
 ---
 # tasks file for users-management
-- name: Add the user "{{ USER }}" with a bash shell
-  user:
-    name: "{{ USER }}"
-    shell: /bin/bash
-    state: present
-    create_home: yes
 
+# - name: Add-user
+#      include_tasks: add-user.yaml
 
-- name: Create a 2048-bit SSH key for user "{{ USER }} in ~{{ USER }}/.ssh/id_rsa"
-  user:
-    name: "{{ USER }}"
-    generate_ssh_key: yes
-    ssh_key_bits: 2048
-    ssh_key_file: .ssh/id_rsa
-
-
-
-- name: Set authorized key taken from file
-  authorized_key:
-    user: "{{ USER }}"
-    state: present
-    key: "{{ lookup('file', '../files/elykey.pub') }}"
-
-
-- name: Add user "{{ USER }}" to sudo
-  lineinfile:
-    path: /etc/sudoers.d/"{{ USER }}"
-    line: '"{{ USER }}" ALL=(ALL) NOPASSWD: ALL'
-    state: present
-    mode: 0440
-    create: yes
-    validate: 'visudo -cf %s'
+ - name: Remove user "{{ USER }}" 
+      include_tasks: remove-user.yaml

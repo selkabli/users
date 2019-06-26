@@ -1,0 +1,12 @@
+---
+# tasks file for users-management
+- name: Add the user "{{ USER }}" with a bash shell
+  user:
+    name: "{{ USER }}"
+    state: absent
+    remove: yes
+
+
+
+- name: remove user "{{ USER }}" from sudoers
+  command: rm -rf etc/sudoers.d/"{{ USER }}"
